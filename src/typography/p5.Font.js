@@ -262,7 +262,8 @@ p5.Font = class {
         str,
         result.x,
         result.y,
-        result.w + result.advance
+        result.w + result.advance,
+        result.h
       );
 
       result.x = pos.x;
@@ -590,7 +591,7 @@ p5.Font = class {
     );
   }
 
-  _handleAlignment(renderer, line, x, y, textWidth) {
+  _handleAlignment(renderer, line, x, y, textWidth, textHeight) {
     const fontSize = renderer._textSize;
 
     if (typeof textWidth === 'undefined') {
@@ -608,10 +609,10 @@ p5.Font = class {
 
     switch (renderer._textBaseline) {
       case constants.TOP:
-        y += this._textAscent(fontSize);
+        y += textHeight;
         break;
       case constants.CENTER:
-        y += this._textAscent(fontSize) / 2;
+        y += textHeight / 2;
         break;
       case constants.BOTTOM:
         y -= this._textDescent(fontSize);
